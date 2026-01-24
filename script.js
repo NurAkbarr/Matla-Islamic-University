@@ -10,6 +10,10 @@
         // Close menu when clicking nav link
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
+                // Don't close if it's a dropdown toggle (has a sibling dropdown-content)
+                if (link.nextElementSibling && link.nextElementSibling.classList.contains('dropdown-content')) {
+                    return;
+                }
                 navMenu.classList.remove('active');
                 hamburger.classList.remove('active');
             });
