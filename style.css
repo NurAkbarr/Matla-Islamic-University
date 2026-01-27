@@ -383,6 +383,17 @@
             margin-bottom: 0;
         }
 
+        /* Specific styling for Dosen section to make names look better */
+        #dosen .keunggulan-card h3 {
+            font-size: 1.1rem;
+            line-height: 1.4;
+            color: var(--primary-green);
+        }
+        
+        #dosen .keunggulan-card {
+            align-items: center; /* Vertically center the icon with the content block */
+        }
+
         /* Program Section */
         .program-grid {
             display: grid;
