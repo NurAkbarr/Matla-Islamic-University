@@ -308,50 +308,79 @@
             margin: 0 auto;
         }
 
-        /* Keunggulan Section */
+        /* Keunggulan Section (Tentang) */
+        .tentang-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .tentang-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            object-fit: cover;
+            height: 100%;
+            min-height: 400px;
+        }
+
         .keunggulan-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr); /* 2 Columns to match the model */
+            gap: 2rem 1.5rem; /* Gap adjustments */
         }
 
         .keunggulan-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            box-shadow: none;
             transition: all 0.3s;
-            border: 2px solid transparent;
+            border: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            text-align: left;
         }
 
         .keunggulan-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-green);
-            box-shadow: 0 15px 35px rgba(45, 134, 89, 0.15);
+            transform: translateX(10px); /* Slide right instead of up */
+            border-color: transparent;
+            box-shadow: none;
         }
 
         .keunggulan-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--primary-green), var(--dark-green));
-            border-radius: 50%;
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: transparent;
+            border-radius: 0;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-start;
+            justify-content: flex-start;
             font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--white);
+            margin-bottom: 0;
+            color: var(--primary-green);
+            margin-top: -5px;
+        }
+
+        .keunggulan-content-wrapper {
+            flex: 1;
         }
 
         .keunggulan-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
             color: var(--text-dark);
+            font-weight: 600;
         }
 
         .keunggulan-card p {
             color: var(--text-light);
-            line-height: 1.8;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 0;
         }
 
         /* Program Section */
@@ -791,5 +820,68 @@
 
             .price-box .new-price {
                 font-size: 2rem;
+            }
+
+            /* Keunggulan Section Mobile */
+            .tentang-wrapper {
+                display: flex;
+                flex-direction: column-reverse; /* Points first (top), Image last (bottom) */
+                gap: 3rem;
+            }
+
+            .tentang-image img {
+                min-height: 250px;
+            }
+
+            .keunggulan-grid {
+                grid-template-columns: 1fr; /* Force 1 column on mobile */
+                gap: 2rem;
+            }
+            
+            .section-header {
+                text-align: center !important; /* Force center on mobile if preferred, or keep left */
+            }
+            
+            /* Carousel Style for Mobile */
+            .program-grid, 
+            .gallery-grid {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 1rem;
+                padding-bottom: 1.5rem;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                justify-content: flex-start; /* Ensure items start from left */
+            }
+            
+            .program-grid::-webkit-scrollbar,
+            .gallery-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .program-card,
+            .gallery-item {
+                width: 85%; /* Make cards taking 85% of screen width to show part of next card */
+                min-width: 280px;
+                max-width: 350px;
+                scroll-snap-align: center;
+                flex-shrink: 0;
+                margin-right: 0;
+            }
+
+            .program-image {
+                height: 160px; /* Reduce image height on mobile */
+            }
+            
+            /* Optional: Add a little padding to the container sides so first/last items aren't flush */
+            section {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .program-grid, .gallery-grid {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
             }
         }
