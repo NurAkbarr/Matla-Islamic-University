@@ -154,30 +154,49 @@
         .hero {
             background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
             color: var(--white);
-            padding: 150px 2rem 100px;
+            padding: 80px 0 80px; /* Reduced padding */
             margin-top: 80px;
             position: relative;
             overflow: hidden;
         }
 
+        /* Abstract Background Decoration */
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path fill="%23ffffff" fill-opacity="0.05" d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"></path></svg>') repeat-x;
-            background-size: cover;
-            opacity: 0.1;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
         }
 
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(255,255,255,0) 70%); /* Touch of gold */
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
             position: relative;
             z-index: 1;
+        }
+
+        .hero-text {
+            flex: 1;
+            text-align: left;
         }
 
         .hero-badge {
@@ -185,27 +204,53 @@
             background: rgba(255,255,255,0.2);
             padding: 0.5rem 1.5rem;
             border-radius: 20px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-size: 0.9rem;
+            backdrop-filter: blur(5px);
         }
 
         .hero h1 {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             line-height: 1.2;
+            font-weight: 700;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            margin-bottom: 2rem; /* Reduced from 2.5rem */
             opacity: 0.9;
+            line-height: 1.8;
+            max-width: 90%;
         }
 
         .hero-buttons {
             display: flex;
             gap: 1rem;
-            justify-content: center;
+            justify-content: flex-start; /* Aligned left */
             flex-wrap: wrap;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 550px;
+            height: auto;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
 
         .btn-primary {
@@ -219,18 +264,21 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            background: var(--accent-gold);
+            color: var(--white);
         }
 
         .btn-secondary {
             background: transparent;
             color: var(--white);
             padding: 1rem 2.5rem;
-            border: 2px solid var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
@@ -240,33 +288,34 @@
         .btn-secondary:hover {
             background: var(--white);
             color: var(--primary-green);
+            border-color: var(--white);
         }
 
         .trusted-by {
-            margin-top: 3rem;
-            padding-top: 2rem;
+            margin-top: 2rem; /* Reduced from 3rem */
+            padding-top: 1.5rem; /* Reduced from 2rem */
             border-top: 1px solid rgba(255,255,255,0.2);
         }
 
         .trusted-by p {
             font-size: 0.9rem;
             opacity: 0.8;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem; /* Reduced from 1.5rem */
         }
 
         .trusted-logos {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
+            justify-content: flex-start; /* Aligned left */
+            gap: 1.5rem;
             flex-wrap: wrap;
             opacity: 0.6;
         }
 
         .trusted-logos div {
             width: 80px;
-            height: 50px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
+            height: 40px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 6px;
         }
 
         /* Section Styles */
@@ -313,41 +362,91 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: center;
+            /* align-items: start; Removed to allow stretch */
+        }
+
+        .tentang-image {
+            position: relative;
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .tentang-images-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            /* height: 100%; Removed to prevent stretching */
+            padding-top: 3.5rem; /* Keep alignment */
+        }
+        
+        .tentang-image.second-image {
+            /* flex: 1; Removed */
+            display: block;
         }
 
         .tentang-image img {
             width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            object-fit: cover;
+            display: block;
+        }
+        
+        .tentang-image.second-image img {
+            height: auto; /* Respect aspect ratio */
+            object-fit: contain;
+        }
+
+
+        
+        /* Subtle shine effect on image wrapper, not the img tag directly to handle overlay */
+        .tentang-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
             height: 100%;
-            min-height: 400px;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 100%);
+            transform: skewX(-25deg);
+            animation: shine 6s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
         }
 
         .keunggulan-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 Columns to match the model */
-            gap: 2rem 1.5rem; /* Gap adjustments */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
         }
 
         .keunggulan-card {
-            background: transparent;
-            padding: 0;
-            border-radius: 0;
-            box-shadow: none;
+            background: var(--white); /* White card background */
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Subtle shadow */
             transition: all 0.3s;
-            border: none;
+            border: 1px solid rgba(0,0,0,0.05);
             display: flex;
             align-items: flex-start;
-            gap: 1.5rem;
+            gap: 1rem;
             text-align: left;
         }
 
         .keunggulan-card:hover {
-            transform: translateX(10px); /* Slide right instead of up */
-            border-color: transparent;
-            box-shadow: none;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(45, 134, 89, 0.1);
+            border-color: var(--light-green);
+        }
+
+        .keunggulan-number {
+             flex-shrink: 0;
+             font-size: 2rem;
+             line-height: 1;
         }
 
         .keunggulan-icon {
@@ -820,6 +919,20 @@
             .hero p {
                 font-size: 1rem;
             }
+            
+            .hero-wrapper {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+            
+            .hero-buttons, .trusted-logos {
+                justify-content: center;
+            }
 
             .section-header h2 {
                 font-size: 2rem;
@@ -840,8 +953,35 @@
                 gap: 3rem;
             }
 
+            .tentang-images-wrapper {
+                flex-direction: row;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 1rem;
+                padding-bottom: 1rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                justify-content: flex-start;
+                /* Hide scrollbar */
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            
+            .tentang-images-wrapper::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tentang-image {
+                min-width: 85%;
+                scroll-snap-align: center;
+                flex-shrink: 0;
+            }
+
             .tentang-image img {
                 min-height: 250px;
+                object-fit: cover;
+                height: 300px; /* Consistent height for slider */
+                border-radius: 15px;
             }
 
             .keunggulan-grid {
